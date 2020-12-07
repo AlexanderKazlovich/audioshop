@@ -1,8 +1,9 @@
 package com.epam.controller;
 
 import com.epam.dao.UserDao;
-import com.epam.model.Role;
-import com.epam.model.User;
+import com.epam.domain.Client;
+import com.epam.domain.Role;
+import com.epam.pool.ConnectionPool;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +18,7 @@ public class RegistrationUser extends HttpServlet {
     private UserDao userDao;
     @Override
     public void init() throws ServletException {
-        userDao = new UserDao();
+        userDao = new UserDao(ConnectionPool.INSTANCE.getConnection());
     }
 
     @Override
@@ -25,13 +26,13 @@ public class RegistrationUser extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String email = req.getParameter("email");
+        String firstName = req.getParameter("firstname");
 
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setEmail(email);
-        user.setRole(Role.USER);
-        userDao.registryUser(user);
+        Client client = new Client(
+                username, password, email, firstName, Role.CLIENT, 100
+        );
+
+        userDao.addUser(client);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
         requestDispatcher.forward(req, resp);

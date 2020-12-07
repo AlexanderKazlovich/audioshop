@@ -7,6 +7,10 @@
 <form action="/registration" method="post">
     <table style="with: 80%">
         <tr>
+            <td>Firstname</td>
+            <td><input type="text" name="firstname" maxlength="15" required/></td>
+        </tr>
+        <tr>
             <td>Username</td>
             <td><input type="text" name="username" maxlength="15" required/></td>
         </tr>
