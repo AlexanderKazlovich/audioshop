@@ -1,6 +1,7 @@
 package com.epam.controller;
 
-import com.epam.dao.UserDao;
+import com.epam.repository.UserDao;
+import com.epam.domain.user.User;
 import com.epam.pool.ConnectionPool;
 
 import javax.servlet.RequestDispatcher;
@@ -23,9 +24,16 @@ public class Authorization extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        userDao.findClientByUsernameAndPassword(username, password);
+        User user = userDao.findUserByUsernameAndPassword(username, password);
+        req.setAttribute("user", user);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/views/main.jsp");
         requestDispatcher.forward(req, resp);
 
+    }
+
+
+    @Override
+    public void destroy() {
+        ConnectionPool.INSTANCE.destroyPool();
     }
 }

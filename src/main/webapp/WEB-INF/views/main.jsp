@@ -11,6 +11,6 @@
     <title>Main page</title>
 </head>
 <body>
-
+<p>User: ${user.getId()}</p>
 </body>
 </html>

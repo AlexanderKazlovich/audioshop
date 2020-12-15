@@ -1,6 +1,8 @@
-package com.epam.domain;
+package com.epam.domain.audio;
 
-public class Track {
+import com.epam.domain.Entity;
+
+public class Track extends Entity {
     private Integer id;
     private String name;
     private String genre;

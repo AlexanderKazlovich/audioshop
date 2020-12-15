@@ -17,7 +17,6 @@ public enum Password {
             throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
 
         password_verified = BCrypt.checkpw(password_plaintext, stored_hash);
-
         return(password_verified);
     }
 }

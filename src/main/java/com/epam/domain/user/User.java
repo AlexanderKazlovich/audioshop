@@ -1,24 +1,16 @@
-package com.epam.domain;
+package com.epam.domain.user;
 
-public class User {
-    private static Integer countId = 1;
+import com.epam.domain.Entity;
+import com.epam.domain.user.Role;
 
+public class User extends Entity {
     private Integer id;
     private String username;
     private String password;
-    private String email;
     private String firstName;
+    private String email;
     private Role role;
 
-    //constructor to create user from browser info
-    public User(String username, String password, String email, String firstName, Role role) {
-        this.id = countId++;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.firstName = firstName;
-        this.role = role;
-    }
     //constructor to create user from batabase info
     public User(Integer id, String username, String password, String email, String firstName, Role role) {
         this.id = id;
@@ -28,6 +20,7 @@ public class User {
         this.firstName = firstName;
         this.role = role;
     }
+
     public User(){}
 
     public Integer getId() {
