@@ -1,5 +1,7 @@
 package com.epam.command;
 
-public interface Command {
+import com.epam.controller.SessionRequestContext;
+
+public interface ActionCommand {
     public String execute(SessionRequestContext sessionRequestContext);
 }

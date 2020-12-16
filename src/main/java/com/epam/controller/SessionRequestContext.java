@@ -1,4 +1,4 @@
-package com.epam.command;
+package com.epam.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -41,6 +41,11 @@ public class SessionRequestContext {
             String name = attr.nextElement();
             sessionAttr.put(name, session.getAttribute(name));
         }
-
+    }
+    public String getRequestParameterValue(String key) {
+        if (requestPar.isEmpty()) {
+            return "";
+        }
+        return requestPar.containsKey(key) ? requestPar.get(key)[0] : "";
     }
 }
